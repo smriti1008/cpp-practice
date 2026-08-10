@@ -18,8 +18,6 @@ int main()
 //     return 0;
 // }
 
-
-
 {
     float add = 255.100.25.60;
     int index=0;
@@ -34,8 +32,6 @@ int main()
     }
     return ans;
 }
-
-
 
 //longest substring without repeating char
 
@@ -59,7 +55,6 @@ int main()
     }
     return length;
 }
-
 
 //smallest distinct window
 
@@ -149,10 +144,9 @@ class Solution {
                 lps[suf]=pre+1;
                 pre++;
                 suf++;
-            }
+           }
             
             else
-            
             {
                 if(pre==0)
                 {
