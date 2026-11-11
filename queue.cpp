@@ -1,89 +1,171 @@
+// #include<iostream>
+// using namespace std;
+
+// class Queue{
+//     int *arr;
+//     int front, rear, size;
+//     public:
+
+//     Queue(int n){
+//         arr = new int[n];
+//         size = n;
+//         front = rear = -1;
+//     }
+
+//     //If queue is empty or not
+//     bool isEmpty(){
+//         return front == -1;
+//     }
+
+//     //queue is full or not
+
+//     bool isFull(){
+//         // return rear == size-1;
+//         return (rear+1)%size==front;
+//     }
+
+//     //push element into queue
+
+//     void push(int x){
+//         if(isEmpty()){
+//             cout<<"Pushed "<<x<<" into the Queue"<<endl;
+//             front = rear = 0;
+//             arr[0]=x;
+//             return;
+//         }
+//         else if(isFull()){
+//             cout<<"Queue overflow";
+//             return;
+//         }
+//         else{
+//             rear=(rear+1)%size;
+//             arr[rear]=x;
+//             cout<<"Pushed "<<x<<" into the Queue"<<endl;
+//         }
+//     }
+
+//     //pop element
+
+//     void pop(){
+//         if(isEmpty())
+//         {
+//             cout<<"Queue is empty";
+//             return;
+//         }
+//         else{
+//             if(front==rear)
+//             {
+//                 cout<<"Popped "<<arr[front]<<" into the Queue"<<endl;
+//                 front = rear = -1;
+//             }
+//             else{
+//                 cout<<"Popped "<<arr[front]<<" into the Queue"<<endl;
+//                 front = (front+1)%size;
+//             }
+//         }
+//     }
+
+//     int start(){
+//         if(isEmpty())
+//         {
+//             cout<<"Queue is empty"<<endl;
+//             return -1;
+//         }
+//         else
+//         return arr[front];
+//     }
+// };
+
+// int main(){
+//     Queue q(5);
+//     q.push(5);
+//     q.push(15);
+//     q.push(51);
+//     q.pop();
+//     q.pop();
+//     int x = q.start();
+//     if(!q.isEmpty())
+//     cout<<x<<" ";
+// }
+
+
+
+//Implement queue using linkedlist
+
 #include<iostream>
 using namespace std;
 
-class Queue{
-    int *arr;
-    int front, rear, size;
+class Node{
     public:
+    int data;
+    Node*next;
 
-    Queue(int n){
-        arr = new int[n];
-        size = n;
-        front = rear = -1;
+    Node(int value)
+    {
+        data=value;
+        next = NULL;
+    }
+};
+
+class Queue{
+    Node* front;
+    Node* rear;
+    public:
+    Queue()
+    {
+        front = rear = NULL;
     }
 
-    //If queue is empty or not
+    //queue is empty or not
     bool isEmpty(){
-        return front == -1;
+        return front==NULL;
     }
 
-    //queue is full or not
-
-    bool isFull(){
-        // return rear == size-1;
-        return (rear+1)%size==front;
-    }
-
-    //push element into queue
+    //push element into the queue
 
     void push(int x){
-        if(isEmpty()){
-            cout<<"Pushed "<<x<<" into the Queue"<<endl;
-            front = rear = 0;
-            arr[0]=x;
-            return;
-        }
-        else if(isFull()){
-            cout<<"Queue overflow";
+        if(isEmpty())
+        {
+            cout<<"Pushed "<< x<<" into the queue"<<endl;
+            front = rear = new Node(x);
             return;
         }
         else{
-            rear=(rear+1)%size;
-            arr[rear]=x;
-            cout<<"Pushed "<<x<<" into the Queue"<<endl;
+            rear->next = new Node(x);
+            cout<<"Pushed "<< x<<" into the queue"<<endl;
+            rear=rear->next;
         }
     }
-
-    //pop element
-
     void pop(){
         if(isEmpty())
         {
-            cout<<"Queue is empty";
-            return;
+            cout<<" Queue underflow";
         }
         else{
-            if(front==rear)
-            {
-                cout<<"Popped "<<arr[front]<<" into the Queue"<<endl;
-                front = rear = -1;
-            }
-            else{
-                cout<<"Popped "<<arr[front]<<" into the Queue"<<endl;
-                front = (front+1)%size;
-            }
+            cout<<"Popped "<< front->data<<" from the queue"<<endl;
+            Node* temp = front;
+            front = front->next;
+            delete temp;
         }
     }
 
     int start(){
         if(isEmpty())
         {
-            cout<<"Queue is empty"<<endl;
+            cout<<"queue is empty"<<endl;
             return -1;
         }
-        else
-        return arr[front];
+        else{
+            return front->data;
+        }
     }
 };
-
 int main(){
-    Queue q(5);
+    Queue q;
     q.push(5);
     q.push(15);
-    q.push(51);
+    q.push(115);
+    q.push(1115);
     q.pop();
-    q.pop();
-    int x = q.start();
-    if(!q.isEmpty())
-    cout<<x<<" ";
+    cout<<q.start()<<endl;
 }
