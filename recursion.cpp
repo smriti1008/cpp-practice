@@ -124,28 +124,28 @@
 
 //recursion in string
 
-#include<iostream>
-using namespace std;
+// #include<iostream>
+// using namespace std;
 
 
-bool checkPalindrome(string &str, int start, int end)
-{
-    if(start>end)
-    {
-        return 1;
-    }
-    if(str[start]!=str[end])
-    {
-        return 0;
-    }
-    else
-    return checkPalindrome(str, start+1, end-1);
-}
-int main()
-{
-    string str="naman";
-    cout<<checkPalindrome(str, 0, 4);
-}
+// bool checkPalindrome(string &str, int start, int end)
+// {
+//     if(start>end)
+//     {
+//         return 1;
+//     }
+//     if(str[start]!=str[end])
+//     {
+//         return 0;
+//     }
+//     else
+//     return checkPalindrome(str, start+1, end-1);
+// }
+// int main()
+// {
+//     string str="naman";
+//     cout<<checkPalindrome(str, 0, 4);
+// }
 
 
 
@@ -174,3 +174,19 @@ int main()
 //     int arr[]={2,4,6,8,10};
 //     cout<<binarySearch(arr, 0, 4,10);
 // }
+
+
+#include<iostream>
+using namespace std;
+
+ void print(int n)
+ {
+    if(n==1)
+    {
+        cout<<1;
+        return;
+    }
+    print(n-1);
+    cout<<n;
+ }
+ 
